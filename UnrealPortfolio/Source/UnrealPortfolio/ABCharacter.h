@@ -46,6 +46,12 @@ public:
 	//UPROPERTY(VisibleAnywhere, Category = Weapon)
 	//USkeletalMeshComponent* Weapon;
 
+	bool CanSetWeapon();
+	void SetWeapon(class AABWeapon* NewWeapon);
+
+	UPROPERTY(VisibleAnywhere, Category = Weapon)
+	class AABWeapon* CurrentWeapon;
+
 	UPROPERTY(VisibleAnywhere, Category =Camera)
 	USpringArmComponent* SpringArm;
 
