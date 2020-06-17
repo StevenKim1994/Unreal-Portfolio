@@ -9,20 +9,17 @@ UABGameInstance::UABGameInstance()
 	static ConstructorHelpers::FObjectFinder<UDataTable> DT_ABCHARACTER(*CharacterDataPath);
 	ABCHECK(DT_ABCHARACTER.Succeeded());
 	ABCharacterTable = DT_ABCHARACTER.Object;
-	ABCHECK(ABCharacterTable->RowMap.Num() > 0);
+	ABCHECK(ABCharacterTable->GetRowMap().Num() > 0);
 
 }
-
 void UABGameInstance::Init()
 {
 	Super::Init();
-	ABLOG_S(Warning);
+	//ABLOG(Warning, TEXT("DropExp of Level 20 ABCharacter : %d"), GetABCCharacterData(20)->DropExp);
 
-	ABLOG(Warning, TEXT("DropExp of Level 20 ABCharacter : %d"), GetABCharacterData(20)->DropExp);
+}
 
-	FABCharacterData* UABGameInstance::GetABCharacterData(int32 level)
-	{
-		return ABCharacterTable->FindRow<FABCharacterData>(*FString::FromInt(Level), TEXT(""));
-	}
-
+FABCharacterData* UABGameInstance::GetABCCharacterData(int32 Level)
+{
+	return ABCharacterTable->FindRow<FABCharacterData>(*FString::FromInt(Level), TEXT(""));
 }
